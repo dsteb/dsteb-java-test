@@ -1,0 +1,10 @@
+# docker box definition
+box: maven
+
+# defining the dev pipeliine
+dev:
+  steps:
+    - script:
+      name: maven-run
+      code: |
+        mvn spring-boot:run
