@@ -27,7 +27,7 @@ build:
       tag: $WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
       author: Dmitrii Stebliuk
       username: _json_key
-      password: $GCR_JSON_KEY_FILEModi
+      password: $GCR_JSON_KEY_FILE
       ports:
         - 8080
         - 7979
