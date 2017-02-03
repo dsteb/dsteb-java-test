@@ -1,10 +1,14 @@
-# docker box definition
-box: maven
-
 # defining the dev pipeliine
 dev:
+  box: maven:3.3.9-jdk-8-alpine
   steps:
-    - script:
-      name: maven-run
-      code: |
-        mvn spring-boot:run
+    - xenoterracide/maven:
+      goals: spring-boot:run
+      ports:
+        - 8080
+
+build:
+  box: maven:3.3.9-jdk-8-alpine
+  steps:
+    - xenoterracide/maven:
+      goals: package
