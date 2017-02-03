@@ -1,11 +1,12 @@
 # defining the dev pipeliine
 dev:
-  box: maven:3.3.9-jdk-8-alpine
+  box: 
+    id: maven:3.3.9-jdk-8-alpine
+    ports:
+      - 8080
   steps:
     - xenoterracide/maven:
       goals: spring-boot:run
-      ports:
-        - 8080
 
 build:
   box: maven:3.3.9-jdk-8-alpine
