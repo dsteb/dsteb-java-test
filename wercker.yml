@@ -13,3 +13,24 @@ build:
   steps:
     - xenoterracide/maven:
       goals: package
+    
+    - script:
+      name: rename
+      code: |
+        mv target/java-k8s-0.0.1-SNAPSHOT.jar app.jar
+      
+    - internal/docker-push:
+      # it is needed for alpine distr
+      disable-sync: true
+      registry: $GCE_REGISTRY
+      repository: $GCE_REGISTRY/dsteb-java-test
+      tag: $WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
+      author: Dmitrii Stebliuk
+      username: _json_key
+      password: $GCR_JSON_KEY_FILE
+      ports:
+        - 8080
+        - 7979
+      working-dir: $WERCKER_SOURCE_DIR
+      cmd: "java -Djava.security.egd=file:/dev/./urandom -jar /app.jar"
+
