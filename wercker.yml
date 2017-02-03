@@ -17,8 +17,8 @@ build:
     - script:
       name: rename
       code: |
-        mv target/java-k8s-0.0.1-SNAPSHOT.jar app.jar
-      
+        mv target/java-k8s-0.0.1-SNAPSHOT.jar /app.jar
+
     - internal/docker-push:
       # it is needed for alpine distr
       disable-sync: true
